@@ -20,8 +20,8 @@ def create_database():
 
 def create_app():
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = SECRET_KEY
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:TheHieuDoan@localhost/Web_2HM_Shop"
+    app.secret_key = "my_secret_key_12345!@#%^&*"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://Hyong:TheHieuDoan@Hyong.mysql.pythonanywhere-services.com/Hyong$fsmdb"
     db.init_app(app)
     migrate.init_app(app, db) 
     from management.user import user
