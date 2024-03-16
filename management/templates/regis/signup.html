@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2HM Stores</title>
+    <link rel="stylesheet" href="../static/css/signup.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="img">
+            <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="">
+        </div>
+        <div class="Login-box">
+            <h2>SING UP</h2>
+            <form method="POST">
+                <div class="login-container">
+                    <label for="email">Email hoặc số điện thoại</label>
+                    <input type="text" id="data" name="data" placeholder="Email hoặc số điện thoại">
+                </div>
+                <div class="login-container">
+                    <label for="email">Tên đăng nhập</label>
+                    <input type="text" id="user_name" name="user_name" placeholder="Tên đăng nhập">
+                </div>
+                <div class="login-container">
+                    <label for="email">Mật khẩu</label>
+                    <input type="password" id="password" name="password" placeholder="Mật khẩu">
+                </div>
+                <div class="login-container">
+                    <label for="email">Nhập lại mật khẩu</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Nhập lại mật khẩu">
+                </div>
+                <div class="bottom">
+                    <a>
+                        <div>
+                            <input style="outline: none;border: none;" type="submit" value="Sign up" class="btn">
+                        </div>
+                    </a>
+                    <a href="/login">
+                        <div>
+                            Login
+                        </div>
+                    </a>
+                </div>
+                <div style="margin-top: 40px; text-align: center; font-size: 16px;">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for cat, mess in messages %}
+                    {% if cat == "error" %}
+                    <div style="color: red;" class="alert alert-danger alert-dismissable fade show" role="alert">
+                        {{ mess }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-success alert-dismissable fade show" role="alert">
+                        {{ mess }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

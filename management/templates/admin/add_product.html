@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2H&M | Add products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/p_add.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        .bg-cl li:hover {
+            background-color: #D4D3E1
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="book_left">
+            <div class="menu">
+                <img style="width: 100%;" src="../static/img/manage.png" alt="">
+            </div>
+            <div class="menu">
+                <li class="menu-item">
+                    <a href="#" class="menu-link menu-toggle"
+                        onclick="toggleDropdown('doanhSoDropdown', 'accountSettingsDropdown','trangChuDropdown')">
+                        <div style="text-transform: uppercase; font-size: 14px; padding-bottom: 10px; font-weight: bold;width: 200px;"
+                            class="Account Settings">Revenue management</div>
+                    </a>
+                    <ul class="menu-sub bg-cl" id="doanhSoDropdown">
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/income"><i
+                                            style="font-size: 12px; margin-right: 10px;"
+                                            class="fa-solid fa-money-check-dollar"></i>INCOME</a></div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/approve"><i
+                                            style="font-size: 15px; margin-right: 10px;"
+                                            class="fa-solid fa-person-circle-check"></i>APPROVE</a></div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        
+            <div class="menu">
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle"
+                        onclick="toggleDropdown('accountSettingsDropdown', 'doanhSoDropdown','trangChuDropdown')">
+                        <div class="Account Settings"
+                            style="text-transform: uppercase; font-size: 14px; padding-bottom: 10px; font-weight: bold;">Manage
+                            Products</div>
+                    </a>
+                    <ul class="menu-sub bg-cl" id="accountSettingsDropdown">
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/add_product"><i
+                                            style="font-size: 12px; margin-right: 6px;"
+                                            class="fa-brands fa-product-hunt"></i>ADD PRODUCT</a></div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/management_list"><i
+                                            style="font-size: 12px; margin-right: 6px;"
+                                            class="fa-solid fa-clipboard-list"></i>LIST PRODUCT</a></div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+        <!-- book_left -->
+        <div class="book_right" style="margin-top: -1px;">
+            
+            <div class="container-fluid bg-secondary mb-5" style="height: 150px; margin-top: -20px;">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="height: 150px;">
+                    <h1 style="color: #CCCC99;" class="font-weight-semi-bold text-uppercase mb-3">ADD PRODUCT</h1>
+                    <div class="d-inline-flex">
+                        <p class="m-0"><a href="#">2HM</a></p>
+                        <p class="m-0 px-2">-</p>
+                        <p class="m-0">The product is added to the database</p>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for cat, mess in messages %}
+                {% if cat == "error" %}
+                <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                    {{ mess }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div class="alert alert-success alert-dismissable fade show" role="alert">
+                    {{ mess }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <div class="book_right-hoa" style="width: 100%;">
+                    <form id="myForm" style="display: flex;justify-content: space-between;" action="#" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                        <div>
+                            <div class="book_right-main">
+                                <label style="color: #CCCC66;" for="productName">NAME: </label>
+                                <input style="height: 100%; outline: none; border: 1px solid #CCCC99;" type="text" id="productName"
+                                    name="name_product" required oninput="updateTable()">
+                            </div>
+                        
+                            <div class="book_right-main">
+                                <label style="color: #CCCC66;" for="price">PRICE: </label>
+                                <input style="height: 100%; outline: none;  border: 1px solid #CCCC99;" type="number" id="price" name="price"
+                                    step="0.01" required oninput="updateTable()">
+                            </div>
+                        
+                            <div class="book_right-main">
+                                <label style="color: #CCCC66;" for="quantity">QUANTITY: </label>
+                                <input style="height: 100%; outline: none;  border: 1px solid #CCCC99;" type="text" id="quantity"
+                                    name="quantity" required oninput="updateTable()">
+                            </div>
+                        
+                            <div class="book_right-main">
+                                <label style="color: #CCCC66;" for="image">IMG PRODUCT: </label>
+                                <input style="height: 100%; outline: none;  border: 1px solid #CCCC99;" type="file" id="image" name="image"
+                                    multiple required oninput="updateTable()">
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <table id="productTable" border="1" style="width: 670px; margin-right: 15px;">
+                                <thead>
+                                    <tr style="width: 670px;">
+                                        <th style="width: 170px;">NAME</th>
+                                        <th style="width: 100px;">PRICE</th>
+                                        <th style="width: 100px;">QUANTITY</th>
+                                        <th style="width: 300px; display: flex;flex-wrap: wrap; margin-left: 1px;">IMG PRODUCT</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                </tbody>
+                            </table>
+                            <div class="book_submit" style="margin-top: 100px; float: right; margin-right: 10px;">
+                                <input type="submit" value="Save">
+                            </div>
+                        </div>
+                        <style>
+                            .book_submit input{
+                                color: white;
+                                background-color: #CCCC99;
+                                text-transform: uppercase;
+                            }
+                            .book_submit input:hover{
+                                background-color: #CCCC66;
+                            }
+                        </style>
+                        
+                            
+                    </form>
+                    <p class="warning"
+                        style="background-color: #FF6347; text-align: center; padding: 8px 0; text-transform: uppercase; margin-top: 100px; color: white; font-size: 12px; font-weight: bold;">
+                        <a style="color: white;" href="/management_list">Return to MANAGE PRODUCTS - List!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="../static/js/p.js"></script>
+<script>
+    function updateTable() {
+        // Lấy giá trị từ các trường input
+        var productName = document.getElementById("productName").value;
+        var price = document.getElementById("price").value;
+        var quantity = document.getElementById("quantity").value;
+        var images = document.getElementById("image").files;
+
+        // Lấy thẻ tbody của bảng
+        var tableBody = document.getElementById("tableBody");
+
+        // Xóa nội dung cũ của bảng
+        tableBody.innerHTML = "";
+
+        // Tạo một hàng mới
+        var newRow = tableBody.insertRow();
+
+        // Tạo các ô mới trong hàng với các giá trị từ input fields
+        var cell1 = newRow.insertCell();
+        cell1.appendChild(document.createTextNode(productName));
+
+        var cell2 = newRow.insertCell();
+        cell2.appendChild(document.createTextNode(price));
+
+        var cell3 = newRow.insertCell();
+        cell3.appendChild(document.createTextNode(quantity));
+
+        var cell4 = newRow.insertCell();
+        for (var i = 0; i < images.length; i++) {
+            var image = document.createElement("img");
+            image.src = URL.createObjectURL(images[i]);
+            image.height = 50;
+            cell4.appendChild(image);
+        }
+    }
+</script>
+</html>

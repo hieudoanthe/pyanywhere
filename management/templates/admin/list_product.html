@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2H&M | Manage product lists</title>
+    <link rel="stylesheet" href="../static/css/p_list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        .bg-cl li:hover {
+            background-color: #D4D3E1
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="book_left" style="position: sticky; top: 0px;">
+            <div class="menu">
+                <img style="width: 100%;" src="../static/img/manage.png" alt="">
+            </div>
+            <div class="menu">
+                <li class="menu-item">
+                    <a href="#" class="menu-link menu-toggle"
+                        onclick="toggleDropdown('doanhSoDropdown', 'accountSettingsDropdown','trangChuDropdown')">
+                        <div style="text-transform: uppercase; font-size: 14px; padding-bottom: 10px; font-weight: bold; width: 200px;"
+                            class="Account Settings">Revenue management</div>
+                    </a>
+                    <ul class="menu-sub bg-cl" id="doanhSoDropdown">
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/income"><i
+                                            style="font-size: 12px; margin-right: 10px;"
+                                            class="fa-solid fa-money-check-dollar"></i>INCOME</a></div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/approve"><i
+                                            style="font-size: 15px; margin-right: 10px;"
+                                            class="fa-solid fa-person-circle-check"></i>APPROVE</a></div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        
+            <div class="menu">
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle"
+                        onclick="toggleDropdown('accountSettingsDropdown', 'doanhSoDropdown','trangChuDropdown')">
+                        <div class="Account Settings"
+                            style="text-transform: uppercase; font-size: 14px; padding-bottom: 10px; font-weight: bold;">Manage
+                            Products</div>
+                    </a>
+                    <ul class="menu-sub bg-cl" id="accountSettingsDropdown">
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/add_product"><i
+                                            style="font-size: 12px; margin-right: 6px;"
+                                            class="fa-brands fa-product-hunt"></i>ADD PRODUCT</a></div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link">
+                                <div style="margin-left: -50px; margin-top: -15px;" class="Account"><a
+                                        style="font-size: 12px; font-weight: bold;"
+                                        href="/management_list"><i
+                                            style="font-size: 12px; margin-right: 6px;"
+                                            class="fa-solid fa-clipboard-list"></i>LIST PRODUCT</a></div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+        <!-- book_left -->
+        <div class="book_right">
+            <div style="width: 100%;">
+                <div class="container-fluid bg-secondary mb-5" style="height: 150px; margin-top: -20px; position: sticky; top:0; z-index: 999;">
+                    <div class="d-flex flex-column align-items-center justify-content-center" style="height: 150px;">
+                        <h1 style="color: #CCCC99;" class="font-weight-semi-bold text-uppercase mb-3">Manage product lists</h1>
+                        <div class="d-inline-flex">
+                            <p class="m-0"><a href="#">2HM</a></p>
+                            <p class="m-0 px-2">-</p>
+                            <p class="m-0">List of products</p>
+                        </div>
+                    </div>
+                    <div style="width: 100%; margin-top: 20px; margin-left: -29px;" class="col-12 pb-1" id="search-container">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <form onsubmit="return false;">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search by name" id="search-input"
+                                        oninput="searchProducts()">
+                                    <div style="z-index: 999; background-color: rgba(255, 255, 255, 0.637);" class="input-group-append">
+                                        <span class="input-group-text bg-transparent text-primary">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                            <div style="z-index: 999;">
+                                <h6 style="opacity: .4;">Note that the currency is calculated in VietNamDong: VNĐ</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; overflow: auto; width: 100%;flex-wrap: wrap;">
+                    <div id="not-found-message" style="display: none; margin-top: 40px;">No found product</div>
+                    {% for product in products %}
+                    <div style="margin-top: 30px;" class="col-lg-4 col-md-6 col-sm-12 pb-1 search_product">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" style="height: 400px;" src="../static/img/{{ product.image.split(';')[0] }}" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">
+                                    <input
+                                        style="text-align: center; border:1px dashed #CCCC99;border-left: none; border-right: none; height: 40px; width: 100%; outline-color: #CCCC99;"
+                                        type="text" id="productName-{{ product.product_id }}" name="name_product" value="{{ product.name_product }}"
+                                        onBlur="updateProductInfo({{ product.product_id }}, 'name_product', this.value)">
+                                </h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>
+                                        <input style="text-align: center; border-style: none; outline: none" type="number"
+                                            id="price-{{ product.id }}" name="price" value="{{ product.price }}"
+                                            onBlur="updateProductInfo({{ product.product_id }}, 'price', this.value)">
+                                    </h6>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="{{ url_for('views.delete_product', product_id=product.product_id) }}" class="btn btn-sm text-dark p-0n delete-hover"><i
+                                            style="color: #CCCC99;" class="fa-solid fa-circle-minus"></i>&nbsp; Delete</a>
+                                    <input style="outline: none; width: 80px; text-align: center; border: 1px solid #CCCC99;" type="text"
+                                        id="quantity-{{ product.id }}" name="quantity" value="{{ product.quantity }}"
+                                        onBlur="updateProductInfo({{ product.product_id }}, 'quantity', this.value)">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #CCCC99;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: opacity 0.5s;
+        }
+    </style>
+    <a href="#" id="back-to-top" style="display: none;color: #fff;"><i class="fa-solid fa-angle-up"></i></a>
+</body>
+<script src="../static/js/p.js"></script>
+<script>
+        // Lắng nghe sự kiện cuộn trang
+        window.addEventListener('scroll', function () {
+            const backToTopButton = document.getElementById('back-to-top');
+            // Kiểm tra vị trí cuộn
+            if (window.pageYOffset > 75) { // Thay đổi 200 thành mức độ cuộn bạn muốn
+                backToTopButton.style.display = 'block'; // Hiển thị nút khi cuộn đủ xa
+            } else {
+                backToTopButton.style.display = 'none'; // Ẩn nút khi cuộn không đủ xa
+            }
+        });
+        // Lắng nghe sự kiện khi người dùng nhấp vào nút "Quay về đầu trang"
+        document.getElementById('back-to-top').addEventListener('click', function (event) {
+            event.preventDefault();
+            scrollToTop(100);
+        });
+        function scrollToTop(duration) {
+            const start = window.pageYOffset;
+            const startTime = performance.now();
+            function scrollStep(timestamp) {
+                const currentTime = timestamp - startTime;
+                const progress = Math.min(currentTime / duration, 1);
+
+                window.scrollTo(0, start - start * progress);
+
+                if (currentTime < duration) {
+                    requestAnimationFrame(scrollStep);
+                }
+            }
+            requestAnimationFrame(scrollStep);
+        }
+</script>
+<script>
+    function updateProductInfo(productId, field, value) {
+        // Gửi yêu cầu cập nhật thông qua Ajax khi người dùng rời khỏi trường nhập liệu
+        fetch(`/update_product/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ [field]: value }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Xử lý kết quả trả về nếu cần
+                console.log('Update response:', data.message);
+            })
+            .catch(error => {
+                console.error('Error during update:', error);
+            });
+    }
+</script>
+<script>
+    function searchProducts() {
+        var searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
+
+        var products = document.querySelectorAll('.search_product');
+        var productFound = false;
+
+        products.forEach(function (product) {
+            var productName = product.querySelector('[name="name_product"]').value.trim().toLowerCase();
+
+            if (productName.startsWith(searchTerm)) {
+                // Nếu sản phẩm bắt đầu bằng từ khóa tìm kiếm, hiển thị nó
+                product.style.display = 'block';
+                productFound = true; // Đặt biến thành true khi tìm thấy sản phẩm
+            } else {
+                // Nếu sản phẩm không bắt đầu bằng từ khóa tìm kiếm, ẩn nó
+                product.style.display = 'none';
+            }
+        });
+
+        // Kiểm tra xem có sản phẩm nào được tìm thấy không và hiển thị thông báo
+        var notFoundMessage = document.getElementById('not-found-message');
+        if (!productFound) {
+            notFoundMessage.style.display = 'block';
+        } else {
+            notFoundMessage.style.display = 'none';
+        }
+    }
+</script>
+</html>

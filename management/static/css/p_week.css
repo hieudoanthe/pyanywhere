@@ -1,0 +1,93 @@
+.book{
+    display: flex;
+    max-width: 95%;
+    margin: 20px auto;
+    justify-content: space-around;
+  }
+  
+  .book_left{
+    flex: 0.12;
+    height: 470px;
+    background-color: #FFFFFF;
+  }
+  .book_right{
+    flex: 0.85;
+    display: flex;
+  }
+  .menu-item{
+    background-color: #F5F5F9;
+    padding : 15px 10px 0 10px;
+    border-radius: 5px;
+  }
+  .menu>img{
+    width: 150px;
+    /* height: 80px; */
+  }
+  .menu-sub {
+    display: block; /* Bắt đầu với display:block để chuyển động từ display:none không có hiệu ứng */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease; /* Thời gian và kiểu chuyển động có thể được điều chỉnh */
+  }
+  .menu-sub .menu-item {
+    display: block;
+    margin-right:4px;
+  }
+  .menu-sub.show {
+    max-height: 1000px; /* Hoặc một giá trị đủ lớn để đảm bảo hiển thị đầy đủ nội dung */
+  }
+  .menu-link {
+    text-decoration: none;
+    color: #566A7F;
+  }
+  .Account>a{
+    text-decoration: none;
+    color: #4300fa;
+   
+  }
+  ul {
+    list-style-type: none;
+  }
+  li {
+    list-style-type: none;
+  }
+  /*  */
+  .book_right-main{
+
+    background-color: #F5F5F9;
+    border-radius: 10px;
+    width:350px;
+    height: 200px;
+    margin-right: 40px;
+  }
+  .transactions{
+    padding-top: 20px;
+    margin-left: 20px;
+    font-size: 40px;
+    color: brown;
+  }
+  .Surplus{
+    display: flex;
+    margin: 20px;
+    justify-content: space-between;
+  }
+  .Surplus_main{
+    display: flex;
+  }
+  .Surplus_comment{
+    font-size: 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .Surplus_img>img{
+    width: 100px;
+    height: 100px;
+  }
+  .Surplus_money>a{
+    text-decoration: none;
+  }
+  .Surplus_money{
+    color: #CCCC66;
+  }

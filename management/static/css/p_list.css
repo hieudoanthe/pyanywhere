@@ -1,0 +1,81 @@
+.book{
+    display: flex;
+    max-width: 95%;
+    margin: 20px auto;
+    justify-content: space-around;
+  }
+  
+  .book_left{
+    flex: 0.12;
+    height: 470px;
+    background-color: #FFFFFF;
+  }
+  .book_right{
+    flex: 0.85;
+    display: flex;
+    flex-direction: row;
+  }
+  .menu-item{
+    background-color: #F5F5F9;
+    padding : 15px 10px 0 10px;
+    border-radius: 5px;
+  }
+  .menu>img{
+    width: 150px;
+    /* height: 80px; */
+  }
+  .menu-sub {
+    display: block; /* Bắt đầu với display:block để chuyển động từ display:none không có hiệu ứng */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease; /* Thời gian và kiểu chuyển động có thể được điều chỉnh */
+  }
+  .menu-sub .menu-item {
+    display: block;
+    margin-right:4px;
+  }
+  .menu-sub.show {
+    max-height: 1000px; /* Hoặc một giá trị đủ lớn để đảm bảo hiển thị đầy đủ nội dung */
+  }
+  .menu-link {
+    text-decoration: none;
+    color: #566A7F;
+  }
+  .Account>a{
+    text-decoration: none;
+    color: #4300fa;
+   
+  }
+  ul {
+    list-style-type: none;
+  }
+  li {
+    list-style-type: none;
+  }
+  .book_sp {
+    width: 295px;
+    height: 400px;
+    margin: 20px;
+    background-color: #F5F5F9;
+    border-radius: 10px;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.book_sp-img > img {
+    width: 250px;
+    height: 250px;
+}
+.book_sp-money{
+    font-size: 20px;
+    color: #4300fa;
+}
+.book_sp-name{
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}

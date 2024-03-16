@@ -1,0 +1,788 @@
+body,
+html {
+   font-family:"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+   width: 100%;
+   height: 100%;
+}
+
+img,
+video {
+   object-fit: cover;
+}
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+a {
+   text-decoration: none;
+   color: black;
+}
+
+/* No */
+.no {
+   display:none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 250;
+   width: 100vw;
+   height: 100vh;
+   background-color: black;
+   opacity: 60%;
+}
+
+/* Giao hàng và liên hệ*/
+
+.ship {
+   position: fixed;
+   top: -300px;
+   left: 0;
+   width: 100vw;
+   height: 300px;
+   z-index: 300;
+   background-color: white;
+}
+
+.ship>.wrap {
+   width: 900px;
+   margin: 50px auto;
+   display: grid;
+   grid-template-rows: 20% 80%;
+}
+
+.ship>.wrap>div {
+   display: flex;
+   justify-content: flex-end;
+}
+
+.ship>.wrap>div>.x {
+   width: 30px;
+   height: 30px;
+   border: 1px solid black;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+}
+
+.aboutship {
+   display: grid;
+   grid-template-columns: auto auto;
+   column-gap: 50px;
+}
+
+.aboutship h1 {
+   font-size: 15px;
+}
+
+.aboutship p {
+   font-size: 14px;
+}
+
+.aboutship a {
+   text-decoration: underline;
+   font-weight: bold;
+   font-size: 13px;
+}
+
+.aboutship a:hover {
+   color: white;
+   background-color: black;
+}
+
+.ani {
+   animation: ship_animation_up .3s ease-in-out;
+}
+
+.ani_out {
+   animation: ship_animation_out .3s ease-in-out;
+}
+
+@keyframes ship_animation_up {
+   from {
+      top : -300px;
+   }
+
+   to {
+      top : 0px;
+   }
+}
+
+@keyframes ship_animation_out {
+   from {
+      top :0px;
+   }  
+
+   to { 
+      top : -300px;
+   }
+}
+
+/* Phần thanh tiêu đề - gồm tất cả animation , css ..*/
+.title {
+   position: fixed;
+   width: 100%;
+   left: 0px;
+   top: 0px;
+   z-index: 2000;
+   display: block;
+}
+
+
+.scroll_up {
+   animation: scroll_up .5s ease-in-out;
+}
+
+.scroll_down {
+   animation: scroll_down .5s ease-in-out;
+}
+
+@keyframes scroll_up {
+   from {
+      top: -120px
+   }
+
+   to {
+      top: 0px
+   }
+}
+
+@keyframes scroll_down {
+   from {
+      top: 0px
+   }
+
+   to {
+      top: -120px
+   }
+}
+
+.title {
+   background-color: white;
+   z-index: 2000;
+}
+
+/*-------------------------------------*/
+/* Phần chuyển đổi chữ - clss text_animation*/
+.title>.text_animation {
+   height: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 11px;
+   background-color: black;
+   color: white;
+   font-weight: bold;
+}
+
+@keyframes changeText {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+.animate {
+   animation: changeText .5s ease-in-out;
+}
+
+/*---------------------------------------------*/
+/* Phần navbar - menu,logo..*/
+.navbar {
+   display: grid;
+   grid-template-columns: 27% 46% 27%;
+   padding-bottom: 0px;
+   margin-bottom: 0px;
+}
+
+/* Phần logo*/
+.logo {
+   display: flex;
+   align-items: start;
+   padding-left: 50px;
+   margin-top: 10px;
+}
+
+.logo>._logo {
+   width: 70px;
+   height: 70px;
+   overflow: visible;
+}
+
+._logo>img {
+   width: 100%;
+   height: 100%;
+}
+
+/*-----------------------------------*/
+/* Phần menu*/
+.main>.subnav {
+   list-style-type: none;
+   padding: 0px;
+   margin: 0px;
+   height: 100%;
+   display: flex;
+   justify-content: space-around;
+   padding-top: 36px;
+}
+
+.main>.subnav>li {
+   float: left;
+   height: 100%;
+   display: flex;
+   align-items: center;
+}
+
+.main>.subnav>li>a::after {
+   background: none repeat scroll 0 0 transparent;
+   bottom: 0;
+   content: "";
+   display: block;
+   height: 3px;
+   left: 50%;
+   position: absolute;
+   background: #fff;
+   transition: width 0.3s ease 0s, left 0.3s ease 0s;
+   width: 0;
+}
+
+.main>.subnav>li>a:hover:after {
+   width: 100%; 
+   left: 0;
+   background-color: black;
+}
+
+.main>.subnav>li>a {
+   text-decoration: none;
+   color: black;
+   font-size: 14px;
+   position: relative;
+   height: 100%;
+   padding-top: 10px;
+}
+.main>.subnav>li:nth-of-type(1):hover>.sub_content {
+   display: block;
+}
+
+.main>.subnav>li:nth-child(2):hover>.sub_content {
+   display: block;
+}
+
+.main>.subnav>li:nth-child(3):hover>.sub_content {
+   display: block;
+}
+
+
+.sub_content {
+   display: none;
+   position: absolute;
+   left: 0;
+   top: 120px;
+   background-color: white;
+   width: 100vw;
+   margin: 0 auto;
+   z-index: 1;
+   border-top: 1px solid gainsboro;
+}
+
+.content_link {
+   display: grid;
+   grid-template-columns: 25% 12.5% 12.5% 12.5% 12.5% 25%;
+   grid-template-rows: 90% 10%;
+}
+
+.content_1 {
+   display: flex;
+   flex-direction: column;
+   padding: 30px 20px;
+   padding-left: 100px;
+   line-height: 2;
+   border-right: 1px solid gainsboro;
+}
+
+.content_2 {
+   display: flex;
+   flex-direction: column;
+   padding: 30px 20px;
+   line-height: 2;
+}
+
+.content_3 {
+   display: flex;
+   flex-direction: column;
+   padding: 30px 20px;
+   line-height: 2;
+}
+
+.content_4 {
+   display: flex;
+   padding-left: 100px;
+   border-top: 1px solid gainsboro;
+   border-right: 1px solid gainsboro;
+   align-items: center;
+}
+
+.content_5 {
+   display: flex;
+   padding-left: 10px;
+   border-top: 1px solid gainsboro;
+   align-items: center;
+}
+
+.content_6 {
+   display: flex;
+   padding-left: 20px;
+   border-top: 1px solid gainsboro;
+   align-items: center;
+}
+
+.a_hover {
+   text-decoration: none;
+   color: black;
+   font-size: 14px;
+}
+
+a.a_hover:hover {
+   text-decoration: underline;
+}
+
+/*---------------------------------------*/
+/* Phần help và tìm kiếm*/
+.search_help {
+   display: grid;
+   grid-template-rows: 30% 70%;
+}
+
+/* Phần trợ giúp*/
+.help {
+   display: flex;
+   justify-content: end;
+   margin-right: 50px;
+   margin-top: 5px;
+}
+
+.help>.help_ul {
+   list-style-type: none;
+   padding: 0px;
+   margin: 0px;
+}
+
+.help>.help_ul>li {
+   float: left;
+   margin-left: 10px;
+}
+
+.help>.help_ul>li>a {
+   text-decoration: none;
+   color: grey;
+   font-size: 11px;
+}
+
+.help>.help_ul>li>i {
+   cursor: pointer;
+   transition: transform 0.1s ease-in-out;
+}
+
+.language_select{
+   position: relative;
+}
+
+._language_change {
+   display: none;
+}
+
+.language_change {
+   position: absolute;
+   right: 0;
+   top:100%;
+   width: 250px;
+   height: 200px;
+   background-color: white;
+   z-index: 2;
+   margin-top: 4px;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid black;
+   padding-top: 20px;
+   row-gap: 20px;
+   align-items: center;
+}
+
+select {
+   height: 50px;
+   width: 90%;
+   padding: 0 20px;
+}
+
+select option {
+   height: 50px;
+}
+
+.help>.help_ul>li:hover>a {
+   text-decoration: underline;
+}
+
+/* Phần tìm kiếm*/
+.search_help>.search {
+   margin-left: 55px;
+   width: 320px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.search_help>.search>.form {
+   position: relative;
+}
+
+.form>input {
+   height: 25px;
+   width: 200px;
+   border: none;
+   background-color: gainsboro;
+   padding-left: 10px;
+}
+
+.form>i {
+   position: absolute;
+   right: 7px;
+   top: 7px;
+   cursor: pointer;
+}
+
+.search_help>.search>i {
+   margin: 0px 10px;
+   font-size: 20px;
+}
+
+/*--------------------------------------------*/
+/*--------------------------------------------*/
+.content {
+   width: 100%;
+   height: 500px;
+}
+
+.content>img {
+   width: 100%;
+   height: 100%;
+}
+
+.none {
+   height: 121px;
+}
+
+.post {
+   height: 50px;
+   width: 100%;
+   background-color: black;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
+   font-size: 15px;
+   position: relative;
+}
+
+.post>span>a {
+   text-decoration: underline;
+   color: white;
+}
+
+.post>i {
+   position: absolute;
+   right: 3%;
+   font-size: 20px;
+   cursor: pointer;
+}
+
+/* Phần main chính*/
+/* video*/
+*{
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+body {
+       max-width: 100%;
+}
+header {
+    width: 100%;
+    height: 90px;
+    margin-bottom: 10%;
+    
+}
+header h1{
+   margin-left: 3%;
+}
+header p {
+   margin-left: 3%;
+   margin-top: 1%;
+}
+.container {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1500px;
+}
+.Menubar ul{
+   display: grid;
+   grid-template-columns: repeat(4,auto);
+   border-bottom: 1px solid black;
+}
+
+.Menubar li {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.Menubar a{
+    color: black;
+    display: inline-block;
+    padding: 20px 10px;
+    position: relative;
+}
+.Menubar a:after {    
+    /* background: none repeat scroll 0 0 transparent; */
+    /* bottom: 0; */
+    content: "";
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    /* background: #fff; */
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+    }
+
+.Menubar a:hover:after { 
+    width: 100%; 
+    left: 0;
+    background-color:black;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
+    .row1, .row2, .row3, .row4 {
+        display: flex;
+        width: 100%; 
+        justify-content: space-between; 
+        background-color: white;
+        z-index: 10;
+        height: auto;
+        
+    }
+    .myImage{
+        z-index: 1;
+    }
+    .row1 .myImage,
+    .row2 .myImage,
+    .row3 .myImage,
+    .row4 .myImage {
+        color: black;
+        width: calc(25% - 10px);
+        margin: 5px 1px; 
+        box-sizing: border-box;
+        
+    }
+    img {
+        width: 100%; 
+        height: auto; 
+        object-fit: cover;
+    }
+.row1 .myImage:hover,
+.row2 .myImage:hover,
+.row3 .myImage:hover,
+.row4 .myImage:hover{
+    border: 1px solid black;
+    padding-bottom: 30px;
+}
+#list-img img,
+#list-img video {
+    width: calc(15% - 7.5px);
+    
+}
+.list-img img,
+.list-img video {
+    width: calc(15% - 7.5px);
+}
+
+.myImage:hover>div>p{
+    z-index: 100;
+}
+/* Phần footer */
+/* ĐĂng ký thành viên*/
+.members {
+   height: 140px;
+   width: 100%;
+   background-color: #ede734;
+}
+
+.over {
+   width: 65%;
+   margin: 0 auto;
+}
+
+.members>.over {
+   height: 100%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   flex-direction: row;
+}
+
+.members>.over>h1 {
+   font-size: 30px;
+   font-weight: bold;
+}
+
+/* Phần thông tin liên quan*/
+.info {
+   height: 400px;
+   width: 100%;
+   background-color: white;
+}
+
+.info>.over {
+   height: 100%;
+   display: grid;
+   grid-template-columns: 15% 15% 20% 18% 20% 10%;
+   gap: 10px;
+}
+
+.properties {
+   height: 100%;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   padding: 25px 10px;
+}
+
+.properties>h1 {
+   font-size: 18px;
+}
+
+.properties>a {
+   text-decoration: none;
+   color: black;
+   line-height: 2;
+   font-size: 13px;
+}
+
+.properties:last-child>a {
+   text-decoration: none;
+   color: black;
+   font-size: 20px;
+}
+
+/* Phần liên hệ blabla*/
+.policy {
+   height: 80px;
+   width: 100%;
+   background-color: #282c31;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.policy>ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   display: flex;
+}
+
+.policy>ul>li {
+   padding: 0 20px;
+   border-left: 1px solid #6d8194;
+}
+
+.policy>ul>li:first-of-type {
+   border-left: none;
+}
+
+.policy>ul>li>a {
+   text-decoration: none;
+   color: gainsboro;
+   font-size: 11px;
+}
+
+/* Phần dành riêng cho thiết kế button*/
+
+.button {
+   position: relative;
+}
+
+._main_button {
+   height: 50px;
+   width: 220px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: black;
+   z-index: 10;
+   position: absolute;
+   top: -2px;
+   left: -2px;
+}
+
+.button::after {
+   display: block;
+   content: "";
+   height: 49px;
+   width: 219px;
+   border: 1px solid black;
+   background-color: transparent;
+   z-index: 1;
+}
+
+._main_button>a {
+   text-decoration: none;
+   color: white;
+   transition: color .3s;
+   font-size: 16px;
+}
+
+._main_button:hover>a {
+   color: #767677;
+}
+
+.button_animation {
+   animation: button_animation .3s ease-in-out;
+}
+
+@keyframes button_animation {
+   from {
+      top: -2px;
+      left: -2px;
+   }
+
+   to {
+      top: 0px;
+      left: 0px;
+   }
+}
+
+/*-----------------------------------------------------------*/
+@media only screen and (max-width: 740px) {
+   .navbar {
+      display: none;
+   }
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {}
+
+
+.s {
+   display: none;
+}
