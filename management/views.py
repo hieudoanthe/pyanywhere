@@ -117,8 +117,8 @@ def infomation(name_product):
         describes = detail.describe.split(';')
         extends = detail.extend.split(';')
         images = product.image.split(';')
-        other_products_Nam = Product.query.filter(Product.product_id != product.product_id, Product.product_id <= 10).limit(100).all()
-        other_products_Nu = Product.query.filter(Product.product_id != product.product_id, Product.product_id > 10, Product.product_id <= 20).limit(100).all()
+        other_products_Nam = Product.query.filter(Product.product_id != product.product_id, Product.product_id <= 12).limit(100).all()
+        other_products_Nu = Product.query.filter(Product.product_id != product.product_id, Product.product_id > 12, Product.product_id <= 22).limit(100).all()
         return render_template('info/info.html', product=product, detail=detail, colors=colors, sizes=sizes, describes=describes, extends=extends, images=images,other_products_Nam=other_products_Nam,other_products_Nu=other_products_Nu)
     else:
         return name_product
