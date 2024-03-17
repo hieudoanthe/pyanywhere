@@ -302,13 +302,13 @@ def add_product():
             return render_template('admin/add_product.html')
 
         # Khởi tạo sản phẩm mới với cart_id mặc định là 1
-        new_product = Product(cart_id=1, name_product=name_product, price=price, quantity=quantity, image="",auto_imei=None)
+        new_product = Product(cart_id=1, name_product=name_product, price=price, quantity=quantity, image="",by_admin=True)
 
         image_filenames = []
         for image in images:
             if image:
                 image_filename = secure_filename(image.filename)
-                image.save(f'E:/Mew/Code/PYTHON/_Web_2HM_Shop/management/static/img/imgdatabase/{image_filename}')
+                image.save(f'E:/Mew/Code/PYTHON/pyanywhere/management/static/img/imgdatabase/{image_filename}')
                 image_filenames.append(image_filename)
         # Lưu danh sách các tên file ảnh dưới dạng chuỗi, cách nhau bởi dấu ';'
         new_product.image = ';'.join(image_filenames)

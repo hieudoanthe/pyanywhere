@@ -60,12 +60,15 @@ class Product(db.Model):
     details = db.relationship('Detail', backref='product', lazy=True)
     warehouses = db.relationship('Warehouse', backref='product',lazy=True)
 
-    def __init__(self, cart_id, name_product, price, quantity, image):
-            self.cart_id = cart_id
-            self.name_product = name_product
-            self.price = price
-            self.quantity = quantity
-            self.image = image
+    def __init__(self, cart_id, name_product, price, quantity, image, by_admin=False):
+        self.cart_id = cart_id
+        self.name_product = name_product
+        self.price = price
+        self.quantity = quantity
+        self.image = image
+        if by_admin:
+            self.auto_imei = None
+        else:
             self.auto_imei = self.generate_auto_imei()
 
     def generate_auto_imei(self):
