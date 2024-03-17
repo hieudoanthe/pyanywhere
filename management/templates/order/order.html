@@ -22,52 +22,55 @@
                     </div>
                 </div>
             </a>
-            <div><h1 style="font-weight: normal; display: flex;justify-content: center; margin-top: 80px;">Thanh Toán</h1></div>
+            <div>
+                <h1 style="font-weight: normal; display: flex;justify-content: center; margin-top: 80px;">Thanh Toán
+                </h1>
+            </div>
             <div class="search_help" style="margin-top: 30px;">
-                            <div class="search">
-                                <form action="" class="form">
-                                    <input type="text" name="search" id="search" placeholder="Tìm kiếm">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </form>
-                                {% if current_user.is_authenticated %}
-                                <style>
-                                    #user_name:hover #user_name_popup {
-                                        display: block;
-                                    }
-                            
-                                    #user_name_popup {
-                                        display: none;
-                                        position: absolute;
-                                        bottom: -35px;
-                                        left: 10px;
-                                        right: 0;
-                                        color: red;
-                                    }
-                            
-                                    #block:hover {
-                                        color: red;
-                                    }
-                                </style>
-                                <div id="user_name" style="position: relative;">
-                                    <p id="block" style="font-size: 25px; padding-left: 10px">{{ current_user.user_name[:1] }}</p>
-                                    <p id="user_name_popup">{{ current_user.user_name }}</p>
-                                </div>
-                                {% else %}
-                                <i class="fa-regular fa-user"></i>
-                                {% endif %}
-                                <i class="fa-regular fa-heart"></i>
-                                <div style="position: relative;">
-                                    {% if total_quantity == 0 %}
-                                    <a href="/cart"><i style="font-size: 20px;" class="fa-solid fa-bag-shopping"></i></a>
-                                    {% else %}
-                                    <a href="/cart"><i style="font-size: 20px;" class="fa-solid fa-bag-shopping"></i></a>
-                                    <a href="/cart"
-                                        style="border-radius: 50%; width: 20px;height: 20px; background-color: #197FB6;color: white; position: absolute; top:-10px;right: 0; left: 15px; display: flex; justify-content: center; align-items: center; text-align: center; font-size: 10px;">
-                                        {{total_quantity}}
-                                    </a>
-                                    {% endif %}
-                                </div>
-                            </div>
+                <div class="search">
+                    <form action="" class="form">
+                        <input type="text" name="search" id="search" placeholder="Tìm kiếm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </form>
+                    {% if current_user.is_authenticated %}
+                    <style>
+                        #user_name:hover #user_name_popup {
+                            display: block;
+                        }
+
+                        #user_name_popup {
+                            display: none;
+                            position: absolute;
+                            bottom: -35px;
+                            left: 10px;
+                            right: 0;
+                            color: red;
+                        }
+
+                        #block:hover {
+                            color: red;
+                        }
+                    </style>
+                    <div id="user_name" style="position: relative;">
+                        <p id="block" style="font-size: 25px; padding-left: 10px">{{ current_user.user_name[:1] }}</p>
+                        <p id="user_name_popup">{{ current_user.user_name }}</p>
+                    </div>
+                    {% else %}
+                    <i class="fa-regular fa-user"></i>
+                    {% endif %}
+                    <i class="fa-regular fa-heart"></i>
+                    <div style="position: relative;">
+                        {% if total_quantity == 0 %}
+                        <a href="/cart"><i style="font-size: 20px;" class="fa-solid fa-bag-shopping"></i></a>
+                        {% else %}
+                        <a href="/cart"><i style="font-size: 20px;" class="fa-solid fa-bag-shopping"></i></a>
+                        <a href="/cart"
+                            style="border-radius: 50%; width: 20px;height: 20px; background-color: #197FB6;color: white; position: absolute; top:-10px;right: 0; left: 15px; display: flex; justify-content: center; align-items: center; text-align: center; font-size: 10px;">
+                            {{total_quantity}}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="navbar_sub">
@@ -192,214 +195,92 @@
     <div class="main_info">
         <div class="left_content">
             <div>
-                {% for product in products_details %}
-                <div class="cart" style="margin-left: 80px; background-color: #ECEFF1;">
-                    <div>
-                        <img width="270px" height="247px" style="object-fit: cover;"
-                            src="../static/img/{{product.image}}" alt="">
-                    </div>
-                    <div style="display: flex; flex-direction: column; justify-content: space-around;">
-                        <h3 style="text-transform: uppercase;">{{ product.name_product }}</h3>
-                        <p style="text-transform: uppercase;">
-                            {{product.details.color_product}}
-                        </p>
-                        <p style="text-transform: uppercase;">{{product.details.size_product}}</p>
-                        <select style="max-width: 200px; outline: none;" name="quantity"
-                            onchange="updateQuantity(this.value, {{ product.product_id }})">
-                            <option style="font-weight: bold;">{{product.quantity}}</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-
-                    </div>
-                    <div style="display: flex;flex-direction: column;justify-content: space-around;">
-                        <div>
-                            <p>ĐƠN GIÁ</p>
-                            <p>{{product.price}} <sub>đ</sub></p>
-                        </div>
-                    </div>
-                    <div style="margin-right: 5px;">
-                        <style>
-                            #close:hover {
-                                color: red;
-                            }
-                        </style>
-                        <button style="border: none; background-color: white;"
-                            onclick="removeProduct({{ product.product_id }})"><i id="close"
-                                style="font-size: 20px; cursor: pointer;" class="fa-solid fa-xmark"></i></button>
-                    </div>
+                <div class="infor-cus">
+                    <h2>THÔNG TIN KHÁCH HÀNG</h2>
                 </div>
-                {% endfor %}
-                <div class="more_product">
-                    <h1>
-                        YOU MAY ALSO LIKE
-                    </h1>
+                <div class="order-slider">
+                    <form id="form1" method="POST">
+                        <div class="create-order">
+                            <div class="person-order">
+                                <div class="person-receive">
+                                    <div class="person person-infor">
 
-                </div>
-                <div class="image-slider">
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7477b277ec6647919fa241a78609964a_9366/Giay_Alphaboost_V1_mau_xanh_la_IG3129_01_standard.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nam Chạy Giày Adizero Adios 8</p>
-                                <p>Nam Chạy</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
+                                        <p>First name</p>
+                                        <input form="form1" type="text" name="first_name" placeholder="First name..."
+                                            required>
 
+                                    </div>
+
+                                    <div class="person person-infor">
+
+                                        <p>Last name</p>
+                                        <input form="form1" type="text" name="last_name" placeholder="Last name..."
+                                            required>
+
+                                    </div>
+
+                                    <div class="person person-infor">
+
+                                        <p>Email</p>
+                                        <input form="form1" type="text" name="email" placeholder="Email..." required>
+
+                                    </div>
+
+                                    <div class="person person-num">
+
+                                        <p>Số điện thoại</p>
+                                        <input form="form1" type="number" name="phone_number"
+                                            placeholder="Nhập số điện thoại..." required>
+
+                                    </div>
+                                    <div class="person person-address">
+                                        <p>Địa chỉ</p>
+                                        <div class="person person-add">
+
+                                            <input form="form1" type="text" name="address" placeholder="Nhập địa chỉ..."
+                                                required>
+
+                                        </div>
+                                        <p>Thành phố</p>
+                                        <div class="person person-add">
+
+                                            <input form="form1" type="text" name="city" placeholder="Tên thành phố..."
+                                                required>
+
+                                        </div>
+                                        <p>Quốc gia</p>
+                                        <div class="person person-add">
+
+                                            <input form="form1" type="text" name="state" placeholder="Quốc gia..."
+                                                required>
+
+                                        </div>
+                                        <p>Mã vùng</p>
+                                        <div class="person person-add">
+
+                                            <input form="form1" type="number" name="zip_code" placeholder="Nhập mã..."
+                                                required>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/eb1e2d9fd65242d588bddc35bd66e61e_9366/Giay_X_PLR_Boost_Mau_xanh_da_troi_ID9580_01_standard.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nữ Chạy Giày Adizero Adios 8</p>
-                                <p>Nữ Chạy</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
 
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3c43063276d94cbbb23a74dcd292bd3c_9366/Giay_X_PLR_Boost_mau_xanh_la_ID9579_01_standard.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nam Sportswear Giày Alphaboost V1</p>
-                                <p>Nam Sportswear</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
-
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/91fa955f44f54f3bb9f3634bca6ecb5f_9366/GAZELLE_DJo_IE8503_01_standard.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nam Sportswear Giày X_PLR Boost</p>
-                                <p>Nam Sportswear</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
-
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/af6af2de73824e3bbbe435933a357fde_9366/Giay_Chay_Bo_Switch_FWD_mau_xanh_la_IG0676_HM1.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nam Sportswear Giày X_PLR Boost</p>
-                                <p>Nam Sportswear</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
-
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/520fd9246c6d439eb1d5a9f0842e4976_9366/Giay_X_PLR_Boost_Hong_IF2954_01_standard.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nam Originals GAZELLE</p>
-                                <p>Nam Originals</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
-
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/841d520758dc46879a708b4e316e6691_9366/Giay_X_PLR_Boost_Xam_IF2953_01_standard.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nữ Sportswear Giày X_PLR Boost</p>
-                                <p>NNữ Sportswear</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
-
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e711a37af3424846b5470558bcd2bcb7_9366/Giay_Ultraboost_Light_Xam_IE1759_01_standard.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nữ Sportswear Giày X_PLR Boost</p>
-                                <p>Nữ Sportswear</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
-
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-item">
-                            <div class="image">
-                                <img src="https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/316297fac2c54c689ec192e376e79540_9366/gi%C3%A0y-ultraboost-light.jpg"
-                                    alt="" />
-                                <p>3.600.000<sup>đ</sup></p>
-                            </div>
-                            <div class="cost">
-                                <p>Nam Chạy Giày Ultraboost Light</p>
-                                <p>Nam Chạy</p>
-                                <p>New</p>
-                            </div>
-                            <div class="_border">
-
-                            </div>
-                        </div>
-                    </a>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="right_content">
             <div class="button">
                 <div class="_main_button" style="width: 100%;">
-                    <button style="border: none; background-color: black; color: white;">
-                        <p>THANH TOÁN <i class="fa-solid fa-arrow-right"></i></p>
-                    </button>
+
+                    <a href="/home">
+                        <button id="submitOrderBtn" style="border: none; background-color: black; color: white;">
+                            <p>THANH TOÁN <i class="fa-solid fa-arrow-right"></i></p>
+                        </button>
+                    </a>
+
                 </div>
             </div>
             <div>
@@ -654,7 +535,28 @@
             });
     }
 </script>
+<script>
+    document.getElementById('submitOrderBtn').addEventListener('click', function () {
+        // Lấy dữ liệu từ các trường input của form 1
+        var formData = new FormData(document.getElementById('form1'));
 
+        // Gửi dữ liệu đến đường dẫn tương ứng qua yêu cầu HTTP POST
+        fetch('/submit_order', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                // Xử lý phản hồi khi yêu cầu thành công
+                alert = ("Đơn hàng đã được gửi đi !")
 
+            } else {
+                // Xử lý phản hồi khi yêu cầu không thành công
+                console.error('Đã xảy ra lỗi khi gửi yêu cầu thanh toán.');
+            }
+        }).catch(error => {
+            console.error('Đã xảy ra lỗi khi gửi yêu cầu thanh toán:', error);
+        });
+    });
+</script>
 
 </html>

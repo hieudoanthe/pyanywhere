@@ -5,7 +5,7 @@ from .import db
 import json
 from django.shortcuts import render
 from django.db.models import Q
-from management.models import Product, Detail, Cart, Warehouse, TotalOrder
+from management.models import Product, Detail, Cart, Warehouse, TotalOrder, Order
 from urllib.parse import quote
 from urllib.parse import quote_plus
 from urllib.parse import unquote_plus
@@ -262,10 +262,46 @@ def remove_product(product_id):
 
 
 # Order
-@views.route("/order", methods=["GET","POST"])
+@views.route("/order",methods=["GET", "POST"] )
+def order_main():
+    return render_template("order/order.html")
+@views.route("/submit_order", methods=["GET", "POST"])
 def order():
-    total_quantity = session.get('total_quantity', 0)
-    return render_template('order/order.html')
+    user_id = current_user.user_id
+    if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        phone_number = request.form['phone_number']
+        address = request.form['address']
+        city = request.form['city']
+        state = request.form['state']
+        zip_code = request.form['zip_code']
+        
+        # Tạo mới đối tượng Order với user_id được truyền vào
+        new_order = Order(
+            user_id=user_id,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            phone_number=phone_number,
+            address=address,
+            city=city,
+            state=state,
+            zip_code = zip_code
+        )
+        
+        try:
+            # Thêm đối tượng Order mới vào session và commit vào database
+            db.session.add(new_order)
+            db.session.commit()
+            flash("Order placed successfully!", "success")
+            return redirect(url_for('views.home'))
+        except Exception as e:
+            # Nếu có lỗi xảy ra trong quá trình thêm order vào cơ sở dữ liệu
+            # bạn có thể xử lý nó ở đây, ví dụ: ghi log hoặc hiển thị thông báo lỗi cho người dùng.
+            flash("An error occurred while placing the order. Please try again later.", "error")
+    return None
 # Quantity
 @views.route('/update_quantity/<int:product_id>', methods=['POST'])
 def update_quantity(product_id):

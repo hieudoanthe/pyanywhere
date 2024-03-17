@@ -492,8 +492,33 @@ select option {
 
 .left_content {
     width: 70%;
-    padding: 20px;
+    margin: 50px 70px;
 }
+
+/* left_content */
+.infor-cus {
+    margin-bottom: 30px;
+}
+
+.person p {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.person input {
+    width: 900px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.radio-infor {
+    display: flex;
+}
+
+.items-backgr {
+    padding-left: 20px;
+}
+
 
 .parent {
     display: flex;
@@ -1111,7 +1136,7 @@ div:nth-of-type(5) {
     border-top: 1px solid black;
 }
 
-.list_supporta >.clist {
+.list_supporta>.clist {
     margin-left: 0px;
     margin-top: 10px;
 }
@@ -1245,7 +1270,7 @@ div:nth-of-type(5) {
         gap: 10px;
         font-weight: 300;
     }
-    
+
     .text {
         width: 100%;
     }
