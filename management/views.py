@@ -308,7 +308,7 @@ def add_product():
         for image in images:
             if image:
                 image_filename = secure_filename(image.filename)
-                image.save(f'E:/Mew/Code/PYTHON/pyanywhere/management/static/img/imgdatabase/{image_filename}')
+                image.save(f'/home/Hyong/pyanywhere/management/static/img/imgdatabase/{image_filename}')
                 image_filenames.append(image_filename)
         # Lưu danh sách các tên file ảnh dưới dạng chuỗi, cách nhau bởi dấu ';'
         new_product.image = ';'.join(image_filenames)
