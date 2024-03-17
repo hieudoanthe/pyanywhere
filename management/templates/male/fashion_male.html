@@ -445,7 +445,7 @@
             <div class="myImage">
                 <a href="{{ url_for('views.infomation', name_product=product.name_product) }}">
                     <div style="position: relative;">
-                        <img class="imgg" style="height: 366px; max-height: 100%;" src="../static/img/{{ product.image.split(';')[0] }}" alt="Ảnh mặc định">
+                        <img class="imgg" style="height: 366px;" src="../static/img/{{ product.image.split(';')[0] }}" alt="Ảnh mặc định">
                         <p style="position: absolute;bottom: 20px;left: 5px;background-color: #fff;">{{product.price}}<sup>đ</sup>
                         </p>
                     </div>
@@ -491,7 +491,7 @@
         </div>
         <div class="row3">
             {% for product, type_product in men_products %}
-            {% if product.product_id >= 9 and product.product_id <= 10 or product.product_id >= 21 and product.product_id <= 22  %} 
+            {% if product.product_id >= 9 and product.product_id <= 12  %} 
             <div class="myImage">
                 <a href="{{ url_for('views.infomation', name_product=product.name_product)}}">
                     <div style="position: relative;">
