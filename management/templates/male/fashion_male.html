@@ -445,7 +445,7 @@
             <div class="myImage">
                 <a href="{{ url_for('views.infomation', name_product=product.name_product) }}">
                     <div style="position: relative;">
-                        <img class="imgg" src="../static/img/{{ product.image.split(';')[0] }}" alt="Ảnh mặc định">
+                        <img class="imgg" style="height: 366px; max-height: 100%;" src="../static/img/{{ product.image.split(';')[0] }}" alt="Ảnh mặc định">
                         <p style="position: absolute;bottom: 20px;left: 5px;background-color: #fff;">{{product.price}}<sup>đ</sup>
                         </p>
                     </div>
