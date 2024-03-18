@@ -509,3 +509,10 @@ def admin_detail(product_id):
     product = Product.query.get(product_id)
     return render_template('admin/add_detail.html', product_id=product_id,product=product)
 
+@views.route('/delete_order/<int:order_id>')
+def delete_order(order_id):
+    # Xử lý logic xóa ở đây
+    order_to_delete = Order.query.get(order_id)
+    db.session.delete(order_to_delete)
+    db.session.commit()
+    return redirect(url_for('views.approve'))
