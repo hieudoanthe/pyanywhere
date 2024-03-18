@@ -388,7 +388,7 @@ def add_product():
 @login_required
 def list_product():
     if current_user.role != 'Admin':
-        flash("You do not have permission to access this page.", "error")
+        flash("Quản trị viên mới có quyền đăng nhập vào trang này!", "error")
         return redirect(url_for('user.login'))
     products = Product.query.filter_by(cart_id=1).all()
     return render_template('admin/list_product.html',products=products)
@@ -397,7 +397,7 @@ def list_product():
 @login_required
 def update_product(product_id):
     if current_user.role != 'Admin':
-        flash("You do not have permission to access this page.", "error")
+        flash("Quản trị viên mới có quyền đăng nhập vào trang này!", "error")
         return redirect(url_for('user.login'))
     # Tìm sản phẩm cần cập nhật từ cơ sở dữ liệu
     product = Product.query.get_or_404(product_id)
@@ -417,7 +417,7 @@ def update_product(product_id):
 @login_required
 def delete_product(product_id):
     if current_user.role != 'Admin':
-        flash("You do not have permission to access this page.", "error")
+        flash("Quản trị viên mới có quyền đăng nhập vào trang này!", "error")
         return redirect(url_for('user.login'))
     try:
         # Xóa chi tiết sản phẩm từ bảng Detail trước
@@ -443,7 +443,7 @@ def delete_product(product_id):
 @login_required
 def approve():
     if current_user.role != 'Admin':
-        flash("You do not have permission to access this page.", "error")
+        flash("Quản trị viên mới có quyền đăng nhập vào trang này!.", "error")
         return redirect(url_for('user.login'))
     orders = Order.query.all()
     return render_template('admin/approve.html',orders=orders)
@@ -453,7 +453,7 @@ from flask_login import current_user
 @login_required
 def income():
     if current_user.role != 'Admin':
-        flash("You do not have permission to access this page.", "error")
+        flash("Quản trị viên mới có quyền đăng nhập vào trang này!", "error")
         return redirect(url_for('user.login'))
 
     all_products = Product.query.filter_by(cart_id=1).all()
@@ -477,7 +477,7 @@ def income():
 @login_required
 def admin_detail(product_id):
     if current_user.role != 'Admin':
-        flash("You do not have permission to access this page.", "error")
+        flash("Quản trị viên mới có quyền đăng nhập vào trang này!", "error")
         return redirect(url_for('user.login'))
     if request.method == 'POST':
         type_product = request.form['type_product']

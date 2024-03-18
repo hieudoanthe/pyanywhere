@@ -35,9 +35,9 @@ def login():
                 flash("Logged in successfully!", category="success")
                 return redirect(url_for("views.home"))
             else:
-                flash("Password is incorrect!", category="error")
+                flash("Sai mật khẩu!", category="error")
         else:
-            flash("User does not exist!", category="error")
+            flash("Người dùng không tồn tại!", category="error")
 
     messages = get_flashed_messages()
     return render_template("regis/login.html", user=current_user)
@@ -57,19 +57,19 @@ def signup():
             email = data
             phone_number = None
         if email and User.query.filter_by(email=email).first():
-            flash("Email already exists!", category="error")
+            flash("Email đã tồn tại!", category="error")
         elif phone_number and User.query.filter_by(phone_number=phone_number).first():
-            flash("Phone number already exists!", category="error")
+            flash("Số điện thoại đã tồn tại!", category="error")
         elif len(data) < 4:
-            flash("Invalid email or phone number!", category="error")
+            flash("Email hoặc số điện thoại không hợp lệ!", category="error")
         elif len(password) < 7:
-            flash("Password is too short!", category="error")
+            flash("Mật khẩu quá ngắn!", category="error")
         elif password != confirm_password:
-            flash("Password does not match!", category="error")
+            flash("Xác nhận mật khẩu không khớp!", category="error")
         else:
             existing_user = User.query.filter_by(user_name=user_name).first()
             if existing_user:
-                flash("Username already exists! Please choose another one.", category="error")
+                flash("Tên đăng nhập đã tồn tại. Vui lòng chọn tên đăng nhập khác!", category="error")
             else:
                 password = generate_password_hash(password, method="scrypt")
                 new_user = User(email=email, phone_number=phone_number, password=password, user_name=user_name)
@@ -77,7 +77,7 @@ def signup():
                     db.session.add(new_user)
                     db.session.commit()
                     login_user(new_user, remember=True)
-                    flash("User created!", category="success")
+                    flash("Tạo tài khoản thành công!", category="success")
                     return redirect(url_for("user.login"))   
                 except Exception as e:
                     flash(f"Error occurred: {str(e)}", category="error")
