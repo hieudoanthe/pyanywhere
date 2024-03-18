@@ -10,8 +10,8 @@ document.body.onload = function () {
 function text_animation() {
     let list = [
         "HÀNG VIỆT NAM CHẤT LƯỢNG CAO ",
-        "ADDIAS - ĐỒNG HÀNH TRÊN CON ĐƯỜNG CHINH PHỤC",
-        "GIAO HÀNG MIỄN PHÍ CHO CÁC THÀNH VIÊN ADICLUB"
+        "2HM - ĐỒNG HÀNH TRÊN CON ĐƯỜNG CHINH PHỤC",
+        "GIAO HÀNG MIỄN PHÍ CHO CÁC THÀNH VIÊN 2HMCLUB"
     ];
     var i = 0;
 
