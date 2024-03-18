@@ -5,7 +5,7 @@ from .import db
 import json
 from django.shortcuts import render
 from django.db.models import Q
-from management.models import Product, Detail, Cart, Warehouse, TotalOrder, Order
+from management.models import Product, Detail, Cart, Warehouse, TotalOrder, Order, User
 from urllib.parse import quote
 from urllib.parse import quote_plus
 from urllib.parse import unquote_plus
@@ -262,11 +262,38 @@ def remove_product(product_id):
 
 
 # Order
-@views.route("/order",methods=["GET", "POST"] )
-def order_main():
-    return render_template("order/order.html")
-@views.route("/submit_order", methods=["GET", "POST"])
+@views.route("/order", methods=["GET", "POST"])
 def order():
+    user_id = current_user.get_id()  
+
+    cart = Cart.query.filter_by(user_id=user_id).first()  
+    if not cart:
+        return jsonify({'message': 'Không tìm thấy giỏ hàng.'}), 404
+
+    products_in_cart = Product.query.filter_by(cart_id=cart.cart_id).all()
+
+    products_details = []
+    for product in products_in_cart:
+
+        detail = Detail.query.filter_by(product_id=product.product_id).first()
+        products_details.append({
+            'product_id': product.product_id,
+            'name_product': product.name_product,
+            'price': float(product.price),  
+            'quantity': product.quantity,
+            'image': product.image,
+            'date_added': product.date_added,
+            'details': {
+                'type_product': detail.type_product,
+                'color_product': detail.color_product,
+                'size_product': detail.size_product,
+                'producer': detail.producer,
+                'describe': detail.describe,
+                'extend': detail.extend
+            } if detail else {}
+        })
+
+    total_order_user = sum(product['price'] * product['quantity'] for product in products_details)
     user_id = current_user.user_id
     if request.method == 'POST':
         first_name = request.form['first_name']
@@ -277,8 +304,7 @@ def order():
         city = request.form['city']
         state = request.form['state']
         zip_code = request.form['zip_code']
-        
-        # Tạo mới đối tượng Order với user_id được truyền vào
+      
         new_order = Order(
             user_id=user_id,
             first_name=first_name,
@@ -288,20 +314,18 @@ def order():
             address=address,
             city=city,
             state=state,
-            zip_code = zip_code
+            zip_code = zip_code,
+            totlal_order_user = total_order_user
         )
         
         try:
-            # Thêm đối tượng Order mới vào session và commit vào database
             db.session.add(new_order)
             db.session.commit()
-            flash("Order placed successfully!", "success")
+            flash("Đặt hàng thành công!", "success")
             return redirect(url_for('views.home'))
         except Exception as e:
-            # Nếu có lỗi xảy ra trong quá trình thêm order vào cơ sở dữ liệu
-            # bạn có thể xử lý nó ở đây, ví dụ: ghi log hoặc hiển thị thông báo lỗi cho người dùng.
             flash("An error occurred while placing the order. Please try again later.", "error")
-    return None
+    return render_template("order/order.html",total_order_user=total_order_user)
 # Quantity
 @views.route('/update_quantity/<int:product_id>', methods=['POST'])
 def update_quantity(product_id):

@@ -85,7 +85,7 @@
             <a href="/home">
                 <div class="logo_1">
                     <div class="_logo_1">
-                        <img src="../static/img/2H&M_LOGO.png" alt="">
+                        <img src="../static/img/logo.png" alt="">
                     </div>
                 </div>
             </a>
@@ -105,8 +105,7 @@
             <a href="/home">
                 <div class="logo_1">
                     <div class="_logo_1">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiC0McdOqapsnG4dNrKc4ZfVy-2ffgBThzph2K26c8oQ&s"
-                            alt="">
+                        <img src="../static/img/logo.png" alt="">
                     </div>
                 </div>
             </a>
@@ -261,6 +260,10 @@
                                             <input form="form1" type="number" name="zip_code" placeholder="Nhập mã..."
                                                 required>
 
+                                            <button
+                                                style="background-color: black; color: white; outline: none; font-size: 25px;"
+                                                type="submit">THANH TOÁN <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -274,13 +277,9 @@
         <div class="right_content">
             <div class="button">
                 <div class="_main_button" style="width: 100%;">
-
-                    <a href="/home">
-                        <button id="submitOrderBtn" style="border: none; background-color: black; color: white;">
-                            <p>THANH TOÁN <i class="fa-solid fa-arrow-right"></i></p>
-                        </button>
-                    </a>
-
+                    <button style="border: none; background-color: black; color: white;">
+                        <p>ĐƠN HÀNG</p>
+                    </button>
                 </div>
             </div>
             <div>
@@ -289,7 +288,7 @@
             <div style="display: flex;justify-content: space-between;">
                 <p>{{total_quantity}} các sản phẩm</p>
                 <p style="margin-right: 20px;">
-                    {{ total_price }}
+                    {{ total_order_user }}
                     <sup>đ</sup>
                 </p>
             </div>
@@ -300,7 +299,7 @@
             </div>
             <div style="display: flex;justify-content: space-between; flex-direction: row;">
                 <p style="font-weight: bold;">TỔNG:</p>
-                <p style="margin-right: 20px; font-weight: bold;">{{ total_price }} <sup>đ</sup></p>
+                <p style="margin-right: 20px; font-weight: bold;">{{total_order_user}} <sup>đ</sup></p>
             </div>
             <div>
                 <h4 style="text-transform: uppercase; letter-spacing: 1px; padding-bottom: 35px;">Phương thức thanh toán
@@ -535,7 +534,7 @@
             });
     }
 </script>
-<script>
+<!-- <script>
     document.getElementById('submitOrderBtn').addEventListener('click', function () {
         // Lấy dữ liệu từ các trường input của form 1
         var formData = new FormData(document.getElementById('form1'));
@@ -547,8 +546,8 @@
         }).then(response => {
             if (response.ok) {
                 // Xử lý phản hồi khi yêu cầu thành công
-                alert = ("Đơn hàng đã được gửi đi !")
-
+                alert=("Đơn hàng đã được gửi đi !")
+               
             } else {
                 // Xử lý phản hồi khi yêu cầu không thành công
                 console.error('Đã xảy ra lỗi khi gửi yêu cầu thanh toán.');
@@ -557,6 +556,6 @@
             console.error('Đã xảy ra lỗi khi gửi yêu cầu thanh toán:', error);
         });
     });
-</script>
+</script> -->
 
 </html>

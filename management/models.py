@@ -36,7 +36,7 @@ class Order(db.Model):
     city = db.Column(db.String(20))
     state = db.Column(db.String(20))
     zip_code = db.Column(db.Integer)
-
+    totlal_order_user = db.Column(db.DECIMAL(precision=12, scale=2)) 
     totalOrder = db.relationship('TotalOrder', lazy=True)
     def __repr__(self):
         return f"Order('{self.user_id}')"
