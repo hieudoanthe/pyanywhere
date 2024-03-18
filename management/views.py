@@ -445,7 +445,8 @@ def approve():
     if current_user.role != 'Admin':
         flash("You do not have permission to access this page.", "error")
         return redirect(url_for('user.login'))
-    return render_template('admin/approve.html')
+    orders = Order.query.all()
+    return render_template('admin/approve.html',orders=orders)
 from flask_login import current_user
 
 @views.route("/income", methods=["GET","POST"])
